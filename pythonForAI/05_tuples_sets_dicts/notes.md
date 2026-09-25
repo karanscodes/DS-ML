@@ -1,7 +1,7 @@
 # Tuples
 A Tuple in python is similar to list. 
 
-The difference being, tuples are immutable, Lists are.
+The difference being, tuples aren't mutable, Lists are.
 
 **"Tuples are Immutable Lists"**
 ## Characterstics
