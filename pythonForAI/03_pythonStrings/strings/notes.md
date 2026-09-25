@@ -1,0 +1,1 @@
+In Python, strings are sequence of Unicode Characters (16 bit)
