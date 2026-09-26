@@ -104,9 +104,6 @@ print(t1 * 3)   # (1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4)
 ## membership
 ```py
 t1 = (1,2,3,4)
-t2 = (5,6,7,8)
-print(t1 + t2)  # (1, 2, 3, 4, 5, 6, 7, 8)
-print(t1 * 3)   # (1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4)
 
 print(1 in t1)  # True
 ```
@@ -117,3 +114,8 @@ for i in t1:
 ```
 
 # Tuple Functions
+very similar to Lists, in tuples we have
+
+len, sum, min, max, sorted
+
+the first 4 returns an integer, meawhile `sorted(iterable)` always returns a list
