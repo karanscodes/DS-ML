@@ -119,3 +119,113 @@ very similar to Lists, in tuples we have
 len, sum, min, max, sorted
 
 the first 4 returns an integer, meawhile `sorted(iterable)` always returns a list
+
+```py
+t = (1,4,3,2,5)
+print(t)
+
+print(len(t))   # 5
+print(sum(t))   # 15
+print(min(t))   # 1
+print(max(t))   # 5
+
+s = sorted(t)
+print(s)    # a list
+
+print(tuple(s))
+```
+
+`count` & `index` same as in lists 
+
+count returns the count of a member of the tuple
+
+index returns the first occurence, throws an error if DNE
+
+
+# Difference between Lists and Tuples
+- syntax [] vs ()
+- mutability
+- speed (tuples, which are immutable, generally are faster)
+```py
+import time
+L = list(range(10000000))
+T = tuple(range(10000000))
+
+start = time.time()
+for i in L:
+    i * 5
+
+print("List time:", time.time() - start) 
+
+start = time.time()
+
+for i in T:
+    i * 5
+print("Tuple time:", time.time() - start)
+```
+This won't actually work as intended in some cases but the concept is still right, Immutable data types are faster than mutable ones.
+
+- size
+```python
+L = list(range(1000))
+T = tuple(range(1000))
+
+print('List size:', sys.getsizeof(L))
+print('Tuple size:', sys.getsizeof(T))
+```
+
+
+- List has more built in functions
+- List is more error prone as it's mutable
+
+```py
+a = [1,2,3]
+b = a
+
+a.append(4)
+```
+This would change both a and b because they're both pointing to the same object
+
+meanwhile if we use a tuple
+```py
+a = (1,2,3)
+b = a
+
+a = a + (4,)
+
+print(a)    # (1,2,3,4)
+print(b)    # (1,2,3)
+```
+
+- usability
+
+# Special Syntax (Tuple unpacking)
+```py
+a,b,c = (1,2,3)
+print(a,b,c) # 1 2 3
+
+a,b = (1,2,3)
+print(a,b) # Error: too many values to unpack
+
+# there is better method, let's say i only need the first two values
+a,b, *others = (1,2,3,4)
+print(a, b) # 1 2
+print(others)   # This becomes a list [3,4]
+```
+
+To swap values, this syntax in python is very common
+```py
+a = 1
+b = 2
+a,b = b,a
+print(a,b) # 2 1
+```
+
+# Zipping Tuples
+basically using zip() on tuples
+```py
+a = (1,2,3,4)
+b = (5,6,7,8)
+
+print(tuple(zip(a,b)))
+```
