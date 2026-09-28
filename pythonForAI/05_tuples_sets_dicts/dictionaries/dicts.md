@@ -293,3 +293,8 @@ print({key: val for (key,val) in products.items() if val > 0})
 
 ## Nested Comprehension
 print tables of number from 2 to 4
+```python
+print({i:{j : i*j for j in range(1,11)} for i in range(2,5)},end=" ")
+```
+
+# THE END
