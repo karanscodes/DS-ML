@@ -11,7 +11,7 @@ d = {
 }
 ```
 
-## Characterstics
+## Characteristics
 - mutable
 - Indexing has no meaning
 - Keys can't be duplicate
@@ -31,7 +31,7 @@ d1 = {
 # Mixed Dictionary
 d = {
     'name' : 'karan',
-    age : 21,
+    'age' : 21,
     'gender' : 'male',
 }
 
@@ -72,6 +72,7 @@ print(d) # {'name': 'chor'}
 
 # Accessing Items
 ## 1D Keys
+square bracket notation `dict[key]` vs `dict.get(key)`, if the key DNE, the first throws KeyError, and latter doesn't.
 ```python
 my_dict = {
     'name' : 'Karan',
@@ -121,6 +122,8 @@ d['gender'] = 'man'
 print(d)
 ```
 # Removing key-value pairs
+`.pop(key)` and `.popitem()` returns the key, and (key,val) tuple respectively.
+
 `.pop(key)` 
 ```python
 d = {
@@ -206,7 +209,7 @@ for key in d:
 
 Important Functions: `items`, `keys`,  `values`
 
-`.items()` breaks key-val pairs into tuple pairs and returns a 'view object' of all the tuple pairs
+`.items()` returns a live 'view object' of the dict's (key, value) tuple pairs. Sort of reverse of `dict([pairs])`
 ```python
 d = {
     'name': 'Karan',
@@ -235,3 +238,58 @@ d2 = {
 d1.update(d2) # d1 ko update karo d2 ki values se
 print(d1)
 ```
+```
+# {1: 2, 2: 3, 3: 67, 4: 69}
+```
+
+# Dictionary Comprehension
+Nothing new, just the syntax differs a little.
+```
+{ key : val for vars in iterable}
+```
+
+```python
+# print 1st 10 numbers and their squares
+d = { i : i**2 for i in range(1,11)}
+print(d)
+```
+
+Making dict using existing dictionaries
+```python
+distances = {
+    'delhi': 1000,
+    'mumbai': 2000,
+    'bangalore': 3000,
+    }
+
+distancesInMiles = {key:value*0.62 for (key, value) in distances.items()}
+print(distancesInMiles)
+```
+
+using .zip()
+```python
+days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
+
+temp_C = [30.5, 32.6, 33.0, 29.8, 28.9, 31.2, 30.9]
+
+d = dict(zip(days, temp_C))
+print(d)
+
+test = {i:j for (i,j) in zip(days,temp_C)}
+print(test)
+```
+
+Using if condition
+```python
+products = {
+    'phone': 10,
+    'laptop': 0,
+    'charger': 32,
+    'tablet': 0,
+}
+
+print({key: val for (key,val) in products.items() if val > 0})
+```
+
+## Nested Comprehension
+print tables of number from 2 to 4
