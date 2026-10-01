@@ -13,3 +13,5 @@ def is_even(n):
 
 for i in range(1,11):
     print(i, is_even(i))
+
+print(is_even.__doc__)
