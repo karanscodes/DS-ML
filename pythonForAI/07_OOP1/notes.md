@@ -38,7 +38,11 @@ Class has two main parts
 
 An Object is an instance of the class
 
+Classes are of two types, Built in and User-defined
+
 # Creating an Object
 ```python
 objectname = classname()
 ```
+
+refer to atm.py
