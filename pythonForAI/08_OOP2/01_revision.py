@@ -34,6 +34,10 @@ class Line:
         else:
             return "Does NOT Lie on the Line"
 
+    def shortest_distance(line, point):
+        return abs(line.a * point.x_cod + line.b * point.y_cod + line.c)/(line.a**2 + line.b**2)**0.5
+
+
 one = Point(2,3)
 print(one)
 
@@ -52,3 +56,9 @@ point2 = Point(1,1)
 
 print(line2, point2)
 print(line2.point_on_line(point2))
+
+
+line3 = Line(3,-1,-10)
+point3 = Point(-4,2)
+
+print(line3.shortest_distance(point3))
