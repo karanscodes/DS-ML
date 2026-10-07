@@ -37,6 +37,18 @@ class Line:
     def shortest_distance(line, point):
         return abs(line.a * point.x_cod + line.b * point.y_cod + line.c)/(line.a**2 + line.b**2)**0.5
 
+    def does_intersect(self, other):
+        a1, b1, c1 = self.a, self.b, self.c
+        a2, b2, c2 = other.a, other.b, other.c
+
+        if a1*b2 - a2*b1 != 0:
+            return "Lines Intersect at a point."
+        
+        if (a1*c2 - a2*c1 == 0) and (b1*c2 - b2*c1 == 0):
+            return "Lines are coincident"
+        
+        return "Lines are Parallel"
+
 
 one = Point(2,3)
 print(one)
