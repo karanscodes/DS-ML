@@ -36,6 +36,6 @@ add1 = Address("bhopal", 462003, 'madhyapradesh')
 c = Customer("Karan", add1, "man")
 
 c.print_address()
-c.edit_profile('twin', 'tokyo', 696969, 'lodge')
+c.edit_profile('twin', 'tokyo', 696969, 'to')
 
 c.print_address()
