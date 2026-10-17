@@ -23,7 +23,7 @@
         "colab_type": "text"
       },
       "source": [
-        "<a href=\"https://colab.research.google.com/github/karanscodes/DS-ML/blob/main/Exception_handling.ipynb\" target=\"_parent\"><img src=\"https://colab.research.google.com/assets/colab-badge.svg\" alt=\"Open In Colab\"/></a>"
+        "<a href=\"https://colab.research.google.com/github/karanscodes/DS-ML/blob/main/pythonForAI\" target=\"_parent\"><img src=\"https://colab.research.google.com/assets/colab-badge.svg\" alt=\"Open In Colab\"/></a>"
       ]
     },
     {
@@ -405,7 +405,7 @@
       "metadata": {
         "id": "dV_g1dSHKEvj"
       },
-      "execution_count": 5,
+      "execution_count": null,
       "outputs": []
     },
     {
@@ -566,7 +566,7 @@
         "id": "tLjAJSDgbi-G",
         "outputId": "cc41a463-675c-477e-f395-f11293c435cf"
       },
-      "execution_count": 1,
+      "execution_count": null,
       "outputs": [
         {
           "output_type": "stream",
@@ -605,7 +605,7 @@
         "id": "Zxz2v4gAPgV2",
         "outputId": "b3e96ab1-217a-4f43-a611-e902d485ed2e"
       },
-      "execution_count": 8,
+      "execution_count": null,
       "outputs": [
         {
           "output_type": "stream",
@@ -636,7 +636,7 @@
         "id": "G0G0J5eEQYf4",
         "outputId": "20f4ee8c-bf6b-4d78-a233-bd845a67557c"
       },
-      "execution_count": 15,
+      "execution_count": null,
       "outputs": [
         {
           "output_type": "error",
@@ -695,7 +695,7 @@
         "id": "n_DKvkPARgTL",
         "outputId": "7f23648f-30b8-4011-f6bf-bfbd19d17486"
       },
-      "execution_count": 21,
+      "execution_count": null,
       "outputs": [
         {
           "output_type": "stream",
@@ -744,7 +744,7 @@
         "id": "spSxqpKPU58k",
         "outputId": "1af397b2-f248-408a-c479-f45facfe5baf"
       },
-      "execution_count": 27,
+      "execution_count": null,
       "outputs": [
         {
           "output_type": "stream",
@@ -808,7 +808,7 @@
         "id": "cvY5UlREWwXg",
         "outputId": "25cae56f-539d-471d-f3aa-94c9aa3a301b"
       },
-      "execution_count": 34,
+      "execution_count": null,
       "outputs": [
         {
           "output_type": "stream",
@@ -864,7 +864,7 @@
         "id": "xrFiEheUdIT0",
         "outputId": "b9c99cdd-d486-4035-f2a7-fc196b1f6ff7"
       },
-      "execution_count": 38,
+      "execution_count": null,
       "outputs": [
         {
           "output_type": "stream",

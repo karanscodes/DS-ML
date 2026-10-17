@@ -1,3 +1,0 @@
-Salman Khan
-I am from 04_append.py
-another line
