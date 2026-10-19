@@ -1,0 +1,825 @@
+{
+  "nbformat": 4,
+  "nbformat_minor": 0,
+  "metadata": {
+    "colab": {
+      "provenance": [],
+      "authorship_tag": "ABX9TyOUN1zTjK/O1zVze/mF0ar/",
+      "include_colab_link": true
+    },
+    "kernelspec": {
+      "name": "python3",
+      "display_name": "Python 3"
+    },
+    "language_info": {
+      "name": "python"
+    }
+  },
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "view-in-github",
+        "colab_type": "text"
+      },
+      "source": [
+        "<a href=\"https://colab.research.google.com/github/karanscodes/DS-ML/blob/main/pythonForAI\" target=\"_parent\"><img src=\"https://colab.research.google.com/assets/colab-badge.svg\" alt=\"Open In Colab\"/></a>"
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "##Warning\n",
+        "before you proceed, sometimes the LEGB rule gets messed up because of the connected nature of cells in google colab, beware, ask claude if confused.\n",
+        "\n",
+        "---\n",
+        "\n",
+        "# Namespaces\n",
+        "A namespace is a space that holds names(identifiers). Programmitcally speaking, namespaces are dictionary of identifers (keys) and their objects (values)\n",
+        "\n",
+        "There are 4 types of namespaces:\n",
+        "- Builtin Namespace\n",
+        "- Global Namespace\n",
+        "- Enclosing Namespace\n",
+        "- Local Namespace\n",
+        "\n",
+        "# Scope and LEGB Rule\n",
+        "A scope is a textual region of a Python program where a namespace is directly accessible.\n",
+        "\n",
+        "The interpreter searches for a name from the inside out, looking in the local, enclosing, global, and finally the built-in scope. If the interpreter doesn't find the name in any of these locations, then Python raises a NameError exception."
+      ],
+      "metadata": {
+        "id": "fXct6YbtIli8"
+      }
+    },
+    {
+      "cell_type": "code",
+      "execution_count": null,
+      "metadata": {
+        "id": "vgWUYKwfIiFd",
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "outputId": "d8bd1d75-cee1-466b-fcd9-f34749f3ce69"
+      },
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "3\n",
+            "2\n"
+          ]
+        }
+      ],
+      "source": [
+        "# Local and Global\n",
+        "\n",
+        "a = 2   # Global Variable\n",
+        "\n",
+        "def temp():\n",
+        "  b = 3 # Local Variable\n",
+        "  print(b)\n",
+        "\n",
+        "temp()\n",
+        "print(a)"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "# mixing things up\n",
+        "\n",
+        "a = 2   # Global Variable\n",
+        "\n",
+        "def temp():\n",
+        "  print(a)\n",
+        "\n",
+        "temp()\n",
+        "print(a)"
+      ],
+      "metadata": {
+        "id": "kKiGIGfAKFkz"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "# un tres interessant example\n",
+        "# a is assigned inside temp(), so Python treats it as LOCAL for the whole function,\n",
+        "# even on the line above the assignment. Global a = 3 is never reached.\n",
+        "\n",
+        "a = 3\n",
+        "\n",
+        "def temp():\n",
+        "  print(a)\n",
+        "  a = 5\n",
+        "\n",
+        "temp()\n",
+        "print(a)"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/",
+          "height": 315
+        },
+        "id": "EH6ZVk71LAoA",
+        "outputId": "56419125-b13d-4d35-cdaf-3f9842a928f2"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "error",
+          "ename": "UnboundLocalError",
+          "evalue": "cannot access local variable 'a' where it is not associated with a value",
+          "traceback": [
+            "\u001b[0;31m---------------------------------------------------------------------------\u001b[0m",
+            "\u001b[0;31mUnboundLocalError\u001b[0m                         Traceback (most recent call last)",
+            "\u001b[0;32m/tmp/ipykernel_5147/1400714227.py\u001b[0m in \u001b[0;36m<cell line: 0>\u001b[0;34m()\u001b[0m\n\u001b[1;32m      5\u001b[0m   \u001b[0ma\u001b[0m \u001b[0;34m=\u001b[0m \u001b[0;36m5\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[1;32m      6\u001b[0m \u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0;32m----> 7\u001b[0;31m \u001b[0mtemp\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0m\u001b[1;32m      8\u001b[0m \u001b[0mprint\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0ma\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n",
+            "\u001b[0;32m/tmp/ipykernel_5147/1400714227.py\u001b[0m in \u001b[0;36mtemp\u001b[0;34m()\u001b[0m\n\u001b[1;32m      2\u001b[0m \u001b[0;34m\u001b[0m\u001b[0m\n\u001b[1;32m      3\u001b[0m \u001b[0;32mdef\u001b[0m \u001b[0mtemp\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m:\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0;32m----> 4\u001b[0;31m   \u001b[0mprint\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0ma\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0m\u001b[1;32m      5\u001b[0m   \u001b[0ma\u001b[0m \u001b[0;34m=\u001b[0m \u001b[0;36m5\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[1;32m      6\u001b[0m \u001b[0;34m\u001b[0m\u001b[0m\n",
+            "\u001b[0;31mUnboundLocalError\u001b[0m: cannot access local variable 'a' where it is not associated with a value"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "# Editing Global is not allowed without global keyword! remember?\n",
+        "a = 3\n",
+        "\n",
+        "def temp():\n",
+        "  a += 1\n",
+        "  print(a)\n",
+        "\n",
+        "temp()\n",
+        "print(a)"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/",
+          "height": 315
+        },
+        "id": "DagpIYt-L4zB",
+        "outputId": "a476a435-1411-4215-e276-6e1981e42a73"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "error",
+          "ename": "UnboundLocalError",
+          "evalue": "cannot access local variable 'a' where it is not associated with a value",
+          "traceback": [
+            "\u001b[0;31m---------------------------------------------------------------------------\u001b[0m",
+            "\u001b[0;31mUnboundLocalError\u001b[0m                         Traceback (most recent call last)",
+            "\u001b[0;32m/tmp/ipykernel_5147/3309717705.py\u001b[0m in \u001b[0;36m<cell line: 0>\u001b[0;34m()\u001b[0m\n\u001b[1;32m      5\u001b[0m   \u001b[0mprint\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0ma\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[1;32m      6\u001b[0m \u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0;32m----> 7\u001b[0;31m \u001b[0mtemp\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0m\u001b[1;32m      8\u001b[0m \u001b[0mprint\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0ma\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n",
+            "\u001b[0;32m/tmp/ipykernel_5147/3309717705.py\u001b[0m in \u001b[0;36mtemp\u001b[0;34m()\u001b[0m\n\u001b[1;32m      2\u001b[0m \u001b[0;34m\u001b[0m\u001b[0m\n\u001b[1;32m      3\u001b[0m \u001b[0;32mdef\u001b[0m \u001b[0mtemp\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m:\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0;32m----> 4\u001b[0;31m   \u001b[0ma\u001b[0m \u001b[0;34m+=\u001b[0m \u001b[0;36m1\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0m\u001b[1;32m      5\u001b[0m   \u001b[0mprint\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0ma\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[1;32m      6\u001b[0m \u001b[0;34m\u001b[0m\u001b[0m\n",
+            "\u001b[0;31mUnboundLocalError\u001b[0m: cannot access local variable 'a' where it is not associated with a value"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "# local and global -> global created inside local\n",
+        "\n",
+        "def temp():\n",
+        "  # this makes 'a' in the global namespace\n",
+        "  global a\n",
+        "  a = 1\n",
+        "  print(a)\n",
+        "\n",
+        "temp()\n",
+        "print(a)"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "3JbOo8L_MUlI",
+        "outputId": "1e3e5b83-1e7b-42c2-d331-413275cd3be6"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "1\n",
+            "1\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "# z gets created in the local namespace\n",
+        "def temp(z):\n",
+        "  print(z)\n",
+        "\n",
+        "a = 5\n",
+        "temp(a)\n",
+        "print(a)"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "GUbw3h5iNbhy",
+        "outputId": "d6b89451-8b2e-40ed-d556-7882b6c9f559"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "5\n",
+            "5\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "# built-in scope\n",
+        "print('hello')\n",
+        "\n",
+        "# these functions are in built-in functions\n",
+        "\n",
+        "# how to see all the built-ins\n",
+        "import builtins\n",
+        "print(dir(builtins))"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "qqAgOGNjNw4b",
+        "outputId": "8e842251-cb11-433f-f22c-01d5a2cc8b79"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "hello\n",
+            "['ArithmeticError', 'AssertionError', 'AttributeError', 'BaseException', 'BaseExceptionGroup', 'BlockingIOError', 'BrokenPipeError', 'BufferError', 'BytesWarning', 'ChildProcessError', 'ConnectionAbortedError', 'ConnectionError', 'ConnectionRefusedError', 'ConnectionResetError', 'DeprecationWarning', 'EOFError', 'Ellipsis', 'EncodingWarning', 'EnvironmentError', 'Exception', 'ExceptionGroup', 'False', 'FileExistsError', 'FileNotFoundError', 'FloatingPointError', 'FutureWarning', 'GeneratorExit', 'IOError', 'ImportError', 'ImportWarning', 'IndentationError', 'IndexError', 'InterruptedError', 'IsADirectoryError', 'KeyError', 'KeyboardInterrupt', 'LookupError', 'MemoryError', 'ModuleNotFoundError', 'NameError', 'None', 'NotADirectoryError', 'NotImplemented', 'NotImplementedError', 'OSError', 'OverflowError', 'PendingDeprecationWarning', 'PermissionError', 'ProcessLookupError', 'PythonFinalizationError', 'RecursionError', 'ReferenceError', 'ResourceWarning', 'RuntimeError', 'RuntimeWarning', 'StopAsyncIteration', 'StopIteration', 'SyntaxError', 'SyntaxWarning', 'SystemError', 'SystemExit', 'TabError', 'TimeoutError', 'True', 'TypeError', 'UnboundLocalError', 'UnicodeDecodeError', 'UnicodeEncodeError', 'UnicodeError', 'UnicodeTranslateError', 'UnicodeWarning', 'UserWarning', 'ValueError', 'Warning', 'ZeroDivisionError', '_IncompleteInputError', '__IPYTHON__', '__build_class__', '__debug__', '__doc__', '__import__', '__loader__', '__name__', '__package__', '__spec__', 'abs', 'aiter', 'all', 'anext', 'any', 'ascii', 'bin', 'bool', 'breakpoint', 'bytearray', 'bytes', 'callable', 'chr', 'classmethod', 'compile', 'complex', 'copyright', 'credits', 'delattr', 'dict', 'dir', 'display', 'divmod', 'enumerate', 'eval', 'exec', 'execfile', 'filter', 'float', 'format', 'frozenset', 'get_ipython', 'getattr', 'globals', 'hasattr', 'hash', 'help', 'hex', 'id', 'input', 'int', 'isinstance', 'issubclass', 'iter', 'len', 'license', 'list', 'locals', 'map', 'max', 'memoryview', 'min', 'next', 'object', 'oct', 'open', 'ord', 'pow', 'print', 'property', 'range', 'repr', 'reversed', 'round', 'runfile', 'set', 'setattr', 'slice', 'sorted', 'staticmethod', 'str', 'sum', 'super', 'tuple', 'type', 'vars', 'zip']\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "# renaming built-ins\n",
+        "L = [1,2,3]\n",
+        "print(max(L))\n",
+        "\n",
+        "# now max is in global scope\n",
+        "def max():\n",
+        "  print(\"hello\")\n",
+        "\n",
+        "max(L)"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/",
+          "height": 193
+        },
+        "id": "kTsezuX5VEiT",
+        "outputId": "a029d54b-cb2f-4d16-92a0-629638479f0b"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "3\n"
+          ]
+        },
+        {
+          "output_type": "error",
+          "ename": "TypeError",
+          "evalue": "max() takes 0 positional arguments but 1 was given",
+          "traceback": [
+            "\u001b[0;31m---------------------------------------------------------------------------\u001b[0m",
+            "\u001b[0;31mTypeError\u001b[0m                                 Traceback (most recent call last)",
+            "\u001b[0;32m/tmp/ipykernel_5147/3993598733.py\u001b[0m in \u001b[0;36m<cell line: 0>\u001b[0;34m()\u001b[0m\n\u001b[1;32m      7\u001b[0m   \u001b[0mprint\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0;34m\"hello\"\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[1;32m      8\u001b[0m \u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0;32m----> 9\u001b[0;31m \u001b[0mmax\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0mL\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0m",
+            "\u001b[0;31mTypeError\u001b[0m: max() takes 0 positional arguments but 1 was given"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "L = [1,2,3]\n",
+        "\n",
+        "print(max(L))\n",
+        "\n",
+        "def max():\n",
+        "  print(\"hey\")\n",
+        "\n",
+        "max(L)"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/",
+          "height": 211
+        },
+        "id": "8gIuwLNKV9a6",
+        "outputId": "8f868938-5639-4e35-ab23-172fba0b62aa"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "error",
+          "ename": "TypeError",
+          "evalue": "max() takes 0 positional arguments but 1 was given",
+          "traceback": [
+            "\u001b[0;31m---------------------------------------------------------------------------\u001b[0m",
+            "\u001b[0;31mTypeError\u001b[0m                                 Traceback (most recent call last)",
+            "\u001b[0;32m/tmp/ipykernel_5147/4233264820.py\u001b[0m in \u001b[0;36m<cell line: 0>\u001b[0;34m()\u001b[0m\n\u001b[1;32m      1\u001b[0m \u001b[0mL\u001b[0m \u001b[0;34m=\u001b[0m \u001b[0;34m[\u001b[0m\u001b[0;36m1\u001b[0m\u001b[0;34m,\u001b[0m\u001b[0;36m2\u001b[0m\u001b[0;34m,\u001b[0m\u001b[0;36m3\u001b[0m\u001b[0;34m]\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[1;32m      2\u001b[0m \u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0;32m----> 3\u001b[0;31m \u001b[0mprint\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0mmax\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0mL\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0m\u001b[1;32m      4\u001b[0m \u001b[0;34m\u001b[0m\u001b[0m\n\u001b[1;32m      5\u001b[0m \u001b[0;32mdef\u001b[0m \u001b[0mmax\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m:\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n",
+            "\u001b[0;31mTypeError\u001b[0m: max() takes 0 positional arguments but 1 was given"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "# Enclosing Scope\n",
+        "def outer():\n",
+        "  # enclosing\n",
+        "  def inner():\n",
+        "    # local\n",
+        "    print('inner')\n",
+        "  inner()\n",
+        "  print('outer')\n",
+        "\n",
+        "outer()\n",
+        "print('main')"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "O-WUHv_paxsF",
+        "outputId": "9c0cdf85-482d-4349-f712-fd032fc418ba"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "inner\n",
+            "outer\n",
+            "main\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "def outer():\n",
+        "  a = 1\n",
+        "\n",
+        "  def inner():\n",
+        "    # ek bahar\n",
+        "    nonlocal a\n",
+        "    a += 1\n",
+        "    print(a)\n",
+        "    print('inner')\n",
+        "\n",
+        "  inner()\n",
+        "  print('outer')\n",
+        "outer()\n",
+        "print('main')"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "4zm6WP0scgzQ",
+        "outputId": "c2a0c1c6-71fe-49ca-9de6-9eb1ae134220"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "2\n",
+            "inner\n",
+            "outer\n",
+            "main\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "source": [],
+      "metadata": {
+        "id": "JSnppQG2fNAB"
+      }
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "print('max' in globals())   # True aaya to global mein tumhara max baitha hai\n",
+        "del max"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/",
+          "height": 176
+        },
+        "id": "Hq6TJjJBfLi5",
+        "outputId": "e48f0eb5-dc62-4752-d533-b2ebb7c2ebe3"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "False\n"
+          ]
+        },
+        {
+          "output_type": "error",
+          "ename": "NameError",
+          "evalue": "name 'max' is not defined",
+          "traceback": [
+            "\u001b[0;31m---------------------------------------------------------------------------\u001b[0m",
+            "\u001b[0;31mNameError\u001b[0m                                 Traceback (most recent call last)",
+            "\u001b[0;32m/tmp/ipykernel_5147/868436980.py\u001b[0m in \u001b[0;36m<cell line: 0>\u001b[0;34m()\u001b[0m\n\u001b[1;32m      1\u001b[0m \u001b[0mprint\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0;34m'max'\u001b[0m \u001b[0;32min\u001b[0m \u001b[0mglobals\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m)\u001b[0m   \u001b[0;31m# True aaya to global mein tumhara max baitha hai\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0;32m----> 2\u001b[0;31m \u001b[0;32mdel\u001b[0m \u001b[0mmax\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0m",
+            "\u001b[0;31mNameError\u001b[0m: name 'max' is not defined"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "# Decorators\n",
+        "A decorator in python is a function that receives another function as input and adds some functionality (decoration) to and it and returns it.\n",
+        "\n",
+        "This can happen only because python functions are 1st class citizens.\n",
+        "There are 2 types of decorators available in python\n",
+        "\n",
+        "- Built-in decorators like `@staticmethod`, `@classmethod`, `@abstractmethod`, `@property` etc\n",
+        "- User defined decorators that we programmers can create according to our needs"
+      ],
+      "metadata": {
+        "id": "6hD0uQL6jHmy"
+      }
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "# in py, functions are 1st class citizens\n",
+        "def func():\n",
+        "  print('hello')\n",
+        "\n",
+        "a = func\n",
+        "a()\n",
+        "\n",
+        "del func\n",
+        "func()"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/",
+          "height": 193
+        },
+        "id": "355zG1FMjHaD",
+        "outputId": "48ef941d-a52e-4f11-99dd-0a1cdce0803e"
+      },
+      "execution_count": 1,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "hello\n"
+          ]
+        },
+        {
+          "output_type": "error",
+          "ename": "NameError",
+          "evalue": "name 'func' is not defined",
+          "traceback": [
+            "\u001b[0;31m---------------------------------------------------------------------------\u001b[0m",
+            "\u001b[0;31mNameError\u001b[0m                                 Traceback (most recent call last)",
+            "\u001b[0;32m/tmp/ipykernel_1116/3012940961.py\u001b[0m in \u001b[0;36m<cell line: 0>\u001b[0;34m()\u001b[0m\n\u001b[1;32m      7\u001b[0m \u001b[0;34m\u001b[0m\u001b[0m\n\u001b[1;32m      8\u001b[0m \u001b[0;32mdel\u001b[0m \u001b[0mfunc\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0;32m----> 9\u001b[0;31m \u001b[0mfunc\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0m",
+            "\u001b[0;31mNameError\u001b[0m: name 'func' is not defined"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "def modify(func, num):\n",
+        "  return func(num)\n",
+        "\n",
+        "def square(num):\n",
+        "  return num**2\n",
+        "\n",
+        "print(modify(square, 4))"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "JdCmlfdDkn_D",
+        "outputId": "076e53f5-0f9e-4d2e-8dc9-b86d38c261b3"
+      },
+      "execution_count": 2,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "16\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "def decorator(func):\n",
+        "  def wrapper():\n",
+        "    print(\"********\")\n",
+        "    func()\n",
+        "    print(\"********\")\n",
+        "  return wrapper\n",
+        "\n",
+        "def hello():\n",
+        "  print('hello')\n",
+        "\n",
+        "a = decorator(hello)\n",
+        "a()"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "Wkow2ygfk60i",
+        "outputId": "39ea325b-172c-487d-8dcd-54867ab2f333"
+      },
+      "execution_count": 9,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "********\n",
+            "hello\n",
+            "********\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "# better syntax for decorators? shorthand basically\n",
+        "\n",
+        "def my_decorator(func):\n",
+        "  def wrapper():\n",
+        "    print('**********')\n",
+        "    func()\n",
+        "    print('**********')\n",
+        "  return wrapper\n",
+        "\n",
+        "@my_decorator\n",
+        "def hello():\n",
+        "  print('hello')\n",
+        "\n",
+        "hello()"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "cH8wkZo50zFJ",
+        "outputId": "4488a516-890f-4ebb-b866-ef1db78a370f"
+      },
+      "execution_count": 1,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "**********\n",
+            "hello\n",
+            "**********\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "# Closures\n",
+        "\n",
+        "def outer():\n",
+        "  a = 5\n",
+        "  def inner():\n",
+        "    print(a)\n",
+        "  return inner\n",
+        "\n",
+        "b = outer()\n",
+        "b()"
+      ],
+      "metadata": {
+        "id": "JNfIGl6Kl_eE"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "# useful decorator?\n",
+        "# we'll make a decorator that'll print the execution time for a decorator\n",
+        "\n",
+        "import time\n",
+        "\n",
+        "def timer(func):\n",
+        "  def wrapper():\n",
+        "    start = time.time()\n",
+        "    func()\n",
+        "    print(\"time taken by function\", func.__name__, 'is', time.time() - start, 'seconds')\n",
+        "  return wrapper\n",
+        "\n",
+        "def hello():\n",
+        "  print(\"hello\")\n",
+        "  time.sleep(2)\n",
+        "\n",
+        "# shorthand use kar rha hu yahan\n",
+        "@timer\n",
+        "def display():\n",
+        "  print(\"I display shit\")\n",
+        "  time.sleep(1)\n",
+        "\n",
+        "f = timer(hello)\n",
+        "f()\n",
+        "display()"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "qzQMkj0o1vOo",
+        "outputId": "bc8a71ba-c89b-48ae-a231-a58f3007ccf3"
+      },
+      "execution_count": 14,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "hello\n",
+            "time taken by function hello is 2.000180244445801 seconds\n",
+            "I display shit\n",
+            "time taken by function display is 1.0001640319824219 seconds\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "# functions with non zero parameters will break though\n",
+        "import time\n",
+        "\n",
+        "def timer(func):\n",
+        "  def wrapper(*args):\n",
+        "    start = time.time()\n",
+        "    func(*args)\n",
+        "    print(\"Time Taken by the function\", func.__name__, \"is\", time.time() - start, 'seconds')\n",
+        "  return wrapper\n",
+        "\n",
+        "@timer\n",
+        "def hello(name):\n",
+        "  print(f\"hello {name}\")\n",
+        "  time.sleep(1)\n",
+        "\n",
+        "hello('karan')"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "5Pmbygio5QRs",
+        "outputId": "b2b977bc-c67e-4be1-bcc4-c46f0dde1334"
+      },
+      "execution_count": 5,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "hello karan\n",
+            "Time Taken by the function hello is 1.0002021789550781 seconds\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "# Another more complex decorator\n",
+        "# will check if the input is of the correct datatype\n",
+        "\n",
+        "def square(num):\n",
+        "  print(num**2)\n",
+        "\n",
+        "square(2)\n",
+        "square('hehe')"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/",
+          "height": 315
+        },
+        "id": "w945rwlv7IwL",
+        "outputId": "05be2663-2125-432b-89d2-498b1cb17aa7"
+      },
+      "execution_count": 8,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "4\n"
+          ]
+        },
+        {
+          "output_type": "error",
+          "ename": "TypeError",
+          "evalue": "unsupported operand type(s) for ** or pow(): 'str' and 'int'",
+          "traceback": [
+            "\u001b[0;31m---------------------------------------------------------------------------\u001b[0m",
+            "\u001b[0;31mTypeError\u001b[0m                                 Traceback (most recent call last)",
+            "\u001b[0;32m/tmp/ipykernel_3975/447469303.py\u001b[0m in \u001b[0;36m<cell line: 0>\u001b[0;34m()\u001b[0m\n\u001b[1;32m      6\u001b[0m \u001b[0;34m\u001b[0m\u001b[0m\n\u001b[1;32m      7\u001b[0m \u001b[0msquare\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0;36m2\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0;32m----> 8\u001b[0;31m \u001b[0msquare\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0;34m'hehe'\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0m",
+            "\u001b[0;32m/tmp/ipykernel_3975/447469303.py\u001b[0m in \u001b[0;36msquare\u001b[0;34m(num)\u001b[0m\n\u001b[1;32m      3\u001b[0m \u001b[0;34m\u001b[0m\u001b[0m\n\u001b[1;32m      4\u001b[0m \u001b[0;32mdef\u001b[0m \u001b[0msquare\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0mnum\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m:\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0;32m----> 5\u001b[0;31m   \u001b[0mprint\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0mnum\u001b[0m\u001b[0;34m**\u001b[0m\u001b[0;36m2\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0m\u001b[1;32m      6\u001b[0m \u001b[0;34m\u001b[0m\u001b[0m\n\u001b[1;32m      7\u001b[0m \u001b[0msquare\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0;36m2\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n",
+            "\u001b[0;31mTypeError\u001b[0m: unsupported operand type(s) for ** or pow(): 'str' and 'int'"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "def sanity_check(data_type):\n",
+        "  def outer_wrapper(func):\n",
+        "    def inner_wrapper(*args):\n",
+        "      if type(*args) == data_type:\n",
+        "        func(*args)\n",
+        "      else:\n",
+        "        raise TypeError('DataType incorrect.')\n",
+        "    return inner_wrapper\n",
+        "  return outer_wrapper\n",
+        "\n",
+        "@sanity_check(int)\n",
+        "def square(num):\n",
+        "  print(num**2)\n",
+        "\n",
+        "square(2)"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "2PNiJl0B9cEh",
+        "outputId": "662db51e-760a-4c83-f6c7-203cd7447171"
+      },
+      "execution_count": 10,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "4\n"
+          ]
+        }
+      ]
+    }
+  ]
+}
